@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright 2016-2018 Universitat Politècnica de València
+    Copyright 2016-2018 Università della Calabria
+    Copyright 2016-2018 Prodevelop, SL
+    Copyright 2016-2018 Technische Universiteit Eindhoven
+    Copyright 2016-2018 Fundación de la Comunidad Valenciana para la
+    Investigación, Promoción y Estudios Comerciales de Valenciaport
+    Copyright 2016-2018 Rinicom Ltd
+    Copyright 2016-2018 Association pour le développement de la formation
+    professionnelle dans le transport
+    Copyright 2016-2018 Noatum Ports Valenciana, S.A.U.
+    Copyright 2016-2018 XLAB razvoj programske opreme in svetovanje d.o.o.
+    Copyright 2016-2018 Systems Research Institute Polish Academy of Sciences
+    Copyright 2016-2018 Azienda Sanitaria Locale TO5
+    Copyright 2016-2018 Alessandro Bassi Consulting SARL
+    Copyright 2016-2018 Neways Technologies B.V.
+
+    See the NOTICE file distributed with this work for additional information
+    regarding copyright ownership.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<device>
+  <developer>Developer_name</developer>
+  <product>Product name or short description</product>
+  <!-- pwrdownmode: power-down flag. If true, this device sleeps between transmissions.
+  Otherwise, it continuously listens to the SWAP network -->
+  <pwrdownmode>true/false</pwrdownmode>
+  <!-- Configuration section -->
+  <config>
+    <!-- Configuration register. Register ID's start from 11 -->
+    <reg name="Register name" id="reg_id">
+      <!-- Configuration parameter -->
+      <!-- Type of parameter: "bin": Binary, "num": Number, "str": String -->
+      <param name="Parameter name" type="bin|num|str">
+        <!-- position: byte.bit (format: B.b or B) position of the parameter within the register -->
+        <position>B.b</position>
+        <!-- size: size in bytes.bits (format: B.b or B) of the parameter within the register -->
+        <size>B.b</size>
+        <!-- default: default value -->
+        <default>default value</default>
+      </param>
+    </reg>
+  </config>
+  <!-- Regular endpoint section. Here comes sensor readings, actuator states, etc. -->
+  <regular>
+    <!-- Regular register. Register ID's start from 11 -->
+    <reg name="Register name" id="reg_id">
+      <!-- Endpoint -->
+      <!-- Type of endpoint: "bin": Binary, "num": Number, "str": String -->
+      <!-- Direction: "inp": input, "out": output -->
+      <endpoint name="Endpoint name" type="bin|num|str" dir="inp|out">
+        <!-- position: byte.bit (format: B.b or B) position of the endpoint within the register -->
+        <position>B.b</position>
+        <!-- size: size in bytes.bits (format: B.b or B) of the endpoint within the register -->
+        <size>B.b</size>
+        <!-- units: list of units for this endpoint -->
+        <units>
+          <!-- unit. Value to be displayed = factor * (endpoint value) + offset name -->
+          <unit name="name" factor="+-F.f" offset="+-O.o"/>
+        </units>
+      </endpoint>
+    </reg>
+  </regular>
+</device>

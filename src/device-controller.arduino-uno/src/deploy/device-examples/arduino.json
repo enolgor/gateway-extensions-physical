@@ -1,0 +1,51 @@
+{
+	"type": "arduino",
+	"controller": "arduino-uno",
+	"description": "Arduino Firmata-2.0 configuration file for LINUX",
+	"config": {
+		"port": "/dev/ttyACM0"
+	},
+	"device_io": [
+		{
+			"type":"actuator",
+			"attr_name":"red-led",
+			"attr_type":"boolean",
+			"config": {
+				"pin": 6
+			}
+		},
+		{
+			"type": "actuator",
+			"attr_name": "green-led",
+			"attr_type": "boolean",
+			"config": {
+				"pin": 2
+			}
+		},
+		{
+			"type": "actuator",
+			"attr_name": "yellow-led",
+			"attr_type": "boolean",
+			"config": {
+				"pin": 10
+			}
+	    	},
+	    	{
+			"type": "sensor",
+			"attr_name": "switch",
+			"attr_type": "boolean",
+			"config": {
+				"pin": 7
+			}
+	    	},
+	    	{
+			"type": "actuator",
+			"attr_name": "servo",
+			"attr_type": "integer",
+			"config": {
+				"pin": 9,
+				"type": "servo"
+			}
+    		}
+	]       
+}

@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright 2016-2018 Universitat Politècnica de València
+    Copyright 2016-2018 Università della Calabria
+    Copyright 2016-2018 Prodevelop, SL
+    Copyright 2016-2018 Technische Universiteit Eindhoven
+    Copyright 2016-2018 Fundación de la Comunidad Valenciana para la
+    Investigación, Promoción y Estudios Comerciales de Valenciaport
+    Copyright 2016-2018 Rinicom Ltd
+    Copyright 2016-2018 Association pour le développement de la formation
+    professionnelle dans le transport
+    Copyright 2016-2018 Noatum Ports Valenciana, S.A.U.
+    Copyright 2016-2018 XLAB razvoj programske opreme in svetovanje d.o.o.
+    Copyright 2016-2018 Systems Research Institute Polish Academy of Sciences
+    Copyright 2016-2018 Azienda Sanitaria Locale TO5
+    Copyright 2016-2018 Alessandro Bassi Consulting SARL
+    Copyright 2016-2018 Neways Technologies B.V.
+
+    See the NOTICE file distributed with this work for additional information
+    regarding copyright ownership.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<devices>
+<!-- developer id and name values are maintained and assigned by panStamp 
+Note: each developer name must have a corresponding sub-directory
+within the devices directory. Name and sub-directory are case
+sensitive and must match.
+-->
+  <developer id="1" name="panStamp">
+  <!-- dev (for device) values are maintained and assigned by the developer
+  Note: each dev name must have a corresponding xml file within the developer
+  sub-directory. Name and xml file must match and are case sensitive.
+  Append .xml to the dev name. (i.e. name="abc" corresponds to abc.xml)
+  -->
+    <dev id="1" name="temphum" label="Dual Temperature/Humidity sensor"/>
+    <dev id="2" name="chronos" label="SWAP-enabled Chronos watch"/>
+    <dev id="3" name="rgbdriver" label="RGB driver board"/>
+    <dev id="4" name="temp" label="Temperature sensor"/>
+    <dev id="5" name="temppress" label="Dual Temperature-Barometric pressure sensor"/>
+    <dev id="6" name="bininps" label="Binary/Counter input module"/>
+    <dev id="7" name="binouts" label="Binary/PWM output module"/>
+    <dev id="8" name="lcddriver" label="Alphanumeric 2x16 LCD driver"/>
+    <dev id="9" name="pulsegen" label="Programmable pulse generator"/>
+    <dev id="10" name="pulsecounter" label="Pulse counter"/>
+    <dev id="11" name="meter" label="Energy meter"/>
+    <dev id="12" name="binouts2" label="Advanced Binary/PWM output module + repeater"/>
+    <dev id="13" name="respira" label="Respira sensor for CO and NO2"/>
+    <dev id="14" name="soilmoisture" label="Soil moisture sensor"/>
+    <dev id="15" name="co2meter" label="CO2 and temperature-humidity sensor"/>
+    <dev id="16" name="firmserver" label="Firmware server"/>
+    <dev id="17" name="idtag" label="Identification tag transmitter"/>
+    <dev id="4278190080" name="unprogrammed" label="Unprogrammed device"/>
+  </developer>
+  <developer id="17" name="Robomotic">
+    <dev id="1" name="EmmaTI" label="Emma watch"/>
+    <dev id="2" name="SeismoFloor" label="Floor sensor"/>
+    <dev id="3" name="EnvPIR" label="Environment and motion sensor"/>
+    <dev id="4" name="Repeater" label="Robomotic repeater"/>
+    <dev id="5" name="LuminoPod" label="Luminosity sensor"/>
+  </developer>
+  <!-- 
+	<developer id="22" name="Luka Mustafa - Musti">
+		<dev id="1" name="sfpddm" label="SFP DDM monitoring system"/>
+	</developer>
+	 -->
+  <developer id="25" name="IulianV">
+		<dev id="1" name="onewire" label="OneWire Temperature DS18B20x3"/>
+  </developer>
+  <developer id="27" name="Miom">
+    <dev id="1" name="temphumlight" label="Temperature/Humidity and Light sensor"/>
+  </developer>
+  <developer id="29" name="panMillenium">
+    <dev id="1" name="panmillenium1" label="Crouzet Millenium 3 wireless interface by panSTamp"/>
+  </developer>
+  <developer id="51" name="kuttel">
+    <dev id="1" name="dhtinput" label="DHT Sensor and Inputs"/>
+    <dev id="2" name="thr" label="Dual Temperature-Humidity-Sensor and Relay-Actor"/>
+  </developer>
+</devices>

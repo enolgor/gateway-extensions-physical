@@ -1,0 +1,29 @@
+{
+	"type": "panstamp",
+	"controller": "panstamp",
+	"description": "PanStamp device",
+	"config": {
+    	"serialPort": "/dev/ttyUSB0",
+	    "serialBaudRate": "38400",
+	    "manufacturer": 1,
+		"product": 1,
+		"address": 3
+	},
+	"device_io": [
+		{
+			"type":"sensor",
+			"attr_name":"temperature",
+			"attr_type":"float"
+		},
+		{
+			"type": "sensor",
+			"attr_name": "humidity",
+			"attr_type": "float"
+		},
+		{
+			"type": "sensor",
+			"attr_name": "voltage",
+			"attr_type": "float"
+		}
+	]       
+}
