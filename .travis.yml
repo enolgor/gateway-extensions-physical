@@ -2,8 +2,9 @@ language: java
 jdk:
 - oraclejdk8
 script:
-  - cd src 
-  - mvn deploy --settings .travis.settings.xml
+  - cd src
+  - if [[ -z "$TRAVIS_TAG" ]]; then PHASE=package; else PHASE=deploy; fi
+  - mvn $PHASE --settings .travis.settings.xml
 notifications:
   email: false
 deploy:
