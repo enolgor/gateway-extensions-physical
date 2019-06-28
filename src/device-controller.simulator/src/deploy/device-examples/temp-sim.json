@@ -1,0 +1,21 @@
+{
+  "type": "simulated",
+  "controller": "simulator",
+  "description": "example of simulated sensor and actuator",
+  "config": {
+    "rate": 5,
+    "rateUnit": "SECONDS",
+    "autostart": 10,
+    "autostartUnit": "SECONDS"
+  },
+  "sensors": {
+    "temperature": {
+      "type": "float"
+    }
+  },
+  "actuators": {
+    "light": {
+      "type": "boolean"
+    }
+  }
+}
