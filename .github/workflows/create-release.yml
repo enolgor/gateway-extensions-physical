@@ -1,0 +1,85 @@
+name: Create Release
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: Deploy and Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Packages
+        run: sudo apt-get install -y curl jq grep
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Get current version
+        id: getversion
+        run: |
+          version=$(mvn -f src/pom.xml help:evaluate -Dexpression=project.version -q -DforceStdout)
+          echo ::set-output name=version::$version
+      - name: Check current version against released tags
+        run: |
+          echo "url = $GITHUB_API_URL/repos/$GITHUB_REPOSITORY/releases"
+          releases=$(curl -s https://api.github.com/repos/enolgor/gateway-extensions-common/releases | jq -r '.[].tag_name')
+          release_not_exists=$(echo "$releases" | grep -q "${{ steps.getversion.outputs.version }}"; echo $?;)
+          if [ "$release_not_exists" -eq "1" ]; then exit 0; else exit 1; fi
+      - name: Setup maven settings
+        run: |
+          cat <<EOT > $HOME/.m2/settings.xml
+          <?xml version="1.0" encoding="UTF-8"?>
+          <settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd" xmlns="http://maven.apache.org/SETTINGS/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <servers>
+            <server>
+              <username>${{ secrets.MAVEN_USER }}</username>
+              <password>${{ secrets.MAVEN_PWD }}</password>
+              <id>central</id>
+            </server>
+            <server>
+              <username>${{ secrets.MAVEN_USER }}</username>
+              <password>${{ secrets.MAVEN_PWD }}</password>
+              <id>snapshots</id>
+            </server>
+           </servers>
+          </settings>
+          EOT
+      - name: Deploy artifacts
+        run: mvn -f src/pom.xml clean deploy
+      - name: Release distribution
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.getversion.outputs.version }}
+          release_name: ${{ steps.getversion.outputs.version }}
+          draft: false
+          prerelease: false
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: src/device-controller.simulator/target/device-controller.simulator-${{ steps.getversion.outputs.version }}-dist.zip
+          asset_content_type: application/zip
+          asset_name: device-controller.simulator-${{ steps.getversion.outputs.version }}-dist.zip
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: src/device-controller.arduino-uno/target/device-controller.arduino-uno-${{ steps.getversion.outputs.version }}-dist.zip
+          asset_content_type: application/zip
+          asset_name: device-controller.arduino-uno-${{ steps.getversion.outputs.version }}-dist.zip
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: src/device-controller.panstamp/target/device-controller.panstamp-${{ steps.getversion.outputs.version }}-dist.zip
+          asset_content_type: application/zip
+          asset_name: device-controller.panstamp-${{ steps.getversion.outputs.version }}-dist.zip
