@@ -21,7 +21,7 @@ jobs:
           echo ::set-output name=version::$version
       - name: Check current version against released tags
         run: |
-          releases=$(curl -s $GITHUB_API_URL/repos/$GITHUB_REPOSITORY/releases" | jq -r '.[].tag_name')
+          releases=$(curl -s $GITHUB_API_URL/repos/$GITHUB_REPOSITORY/releases | jq -r '.[].tag_name')
           release_not_exists=$(echo "$releases" | grep -q "${{ steps.getversion.outputs.version }}"; echo $?;)
           if [ "$release_not_exists" -eq "1" ]; then exit 0; else exit 1; fi
       - name: Setup maven settings
